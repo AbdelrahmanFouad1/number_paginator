@@ -85,13 +85,10 @@ class NumberContent extends StatelessWidget {
                 .config
                 .buttonUnselectedBackgroundColor,
           ),
-          child: AutoSizeText(
+          child: const AutoSizeText(
             "...",
             style: TextStyle(
-              color: InheritedNumberPaginator.of(context)
-                      .config
-                      .buttonUnselectedForegroundColor ??
-                  Theme.of(context).colorScheme.secondary,
+              color: Color(0xff333333),
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),

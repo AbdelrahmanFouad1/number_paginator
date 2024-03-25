@@ -29,10 +29,23 @@ class PaginatorButton extends StatelessWidget {
         child: TextButton(
           onPressed: onPressed,
           style: TextButton.styleFrom(
-            shape: config.buttonShape ?? const CircleBorder(),
+            shape: OutlinedBorder.lerp(
+              config.buttonShape ?? const RoundedRectangleBorder(),
+              RoundedRectangleBorder(
+                side:selected?  BorderSide.none: const BorderSide(
+                  color:Color(0xffc3c5c8),
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              1,
+            ),
             backgroundColor: _backgroundColor(context, selected),
-            foregroundColor: _foregroundColor(context, selected),
-            textStyle: config.buttonTextStyle,
+            foregroundColor: selected ? const Color(0xffFFFFFF): const Color(0xff333333),
+            textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
             padding: config.buttonPadding,
           ),
           child: child,
@@ -50,12 +63,4 @@ class PaginatorButton extends StatelessWidget {
           .config
           .buttonUnselectedBackgroundColor;
 
-  Color? _foregroundColor(BuildContext context, bool selected) => selected
-      ? (InheritedNumberPaginator.of(context)
-              .config
-              .buttonSelectedForegroundColor ??
-          Colors.white)
-      : InheritedNumberPaginator.of(context)
-          .config
-          .buttonUnselectedForegroundColor;
 }
