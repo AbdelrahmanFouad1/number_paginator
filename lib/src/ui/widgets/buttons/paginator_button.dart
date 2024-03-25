@@ -58,7 +58,7 @@ class PaginatorButton extends StatelessWidget {
       ? (InheritedNumberPaginator.of(context)
               .config
               .buttonSelectedBackgroundColor ??
-          Theme.of(context).colorScheme.secondary)
+          const Color(0xff1dbf73))
       : InheritedNumberPaginator.of(context)
           .config
           .buttonUnselectedBackgroundColor;
